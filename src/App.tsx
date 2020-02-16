@@ -3,7 +3,8 @@ import * as Phaser from 'phaser';
 import './App.css';
 import gameConfig from './config/phaserConfig';
  
-export const game = new Phaser.Game(gameConfig);
+const game = new Phaser.Game(gameConfig);
+console.log(game)
 
 const App = () => {
   return (

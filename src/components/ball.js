@@ -9,6 +9,7 @@ class Ball {
         this.square.setRectangle(squareSize, squareSize)
         this.square.setToSleep(true)
         this.square.body.ignorePointer = true
+        this.square.body.gameObject.setBounce(0.5)
         this.removeStatic = () => {
             this.square.setAwake(true)
         }

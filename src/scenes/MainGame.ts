@@ -27,11 +27,12 @@ class MainGame extends Phaser.Scene
         const gameStarted = false
         const enemyList: any = []
         let score = 0
-        
+        console.log(this.matter)
+        this.matter.set60Hz()
         this.matter.world.setBounds();
         this.matter.add.mouseSpring();
 
-        new Player(this, (window.innerWidth/2), (window.innerHeight/2), scale)
+        const player = new Player(this, (window.innerWidth/2), (window.innerHeight/2), scale)
 
         let ball = new Ball(this, scale, score, scoreboard, enemyList)
 
@@ -50,9 +51,9 @@ class MainGame extends Phaser.Scene
         }
 
         var timer = this.time.addEvent({
-            delay: speedUp ? 675 : 1050,
+            delay: speedUp ? 20 : 30,
             callback: ()=> {
-                if(enemyList.length < 5) {
+                if(enemyList.length < 1000) {
                     enemyList.push(
                         new Enemy(
                             this,
@@ -70,6 +71,8 @@ class MainGame extends Phaser.Scene
 
 
         this.input.on('pointerdown', (pointer: any) => {
+            console.log(player)
+            console.log(this.matter)
             let bodiesUnderPoint = this.matter.intersectPoint(pointer.worldX, pointer.worldY);
             bodiesUnderPoint.forEach((body: any) => {
                 if(!gameStarted && body.gameObject.isPlayer) {
